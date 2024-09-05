@@ -23,6 +23,7 @@ function showCreateCh() {
     document.querySelector('.create-ch').classList.remove('hidden');
     document.querySelector('.track-ch').classList.add('hidden');
     document.querySelector('.history-ch').classList.add('hidden');
+    document.querySelector()
     document.querySelector('.title').textContent = "Créer un Chantier";
     document.querySelector('.title').style.color = 'green';
 }
