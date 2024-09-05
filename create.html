@@ -3,16 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="maquette.css">
+    <link rel="stylesheet" href="create.css">
+    <title>Créer un Chantier</title>
 </head>
+<body>
+    <div class="container">
+    <h1 class="Ch chantier">Créer un Chantier</h1>
     <!-- Page Créer un Chantier -->
-    <div class="create-ch ">
+    <div class="create-ch">
         <!-- Section gauche -->
         <div class="left-section">
             <input type="text" placeholder="Id du chantier">
             <input type="text" placeholder="Entrez le nom du chantier">
             <input type="text" placeholder="Métré">
             <input type="text" placeholder="Input">
+            
+            <!-- Cases à cocher pour la section gauche -->
+            <label><input type="checkbox"> Décret 92</label>
+            <label><input type="checkbox"> Décret 94</label>
         </div>
 
         <!-- Section centrale -->
@@ -33,23 +41,16 @@
             <input type="text" placeholder="Input">
             <input type="text" placeholder="Input">
             <input type="text" placeholder="Input">
-        </div>
-
-        <!-- Cases à cocher en bas -->
-        <div class="checkbox-section">
-            <label><input type="checkbox"> Décret 92</label>
-            <label><input type="checkbox"> Décret 94</label>
+            
+            <!-- Cases à cocher pour la section droite -->
             <label><input type="checkbox"> RTE</label>
             <label><input type="checkbox"> Autres</label>
         </div>
     </div>
-
+    </div>
     <!-- Bouton Retour -->
     <div class="return-button" onclick="showProfiles()">
-        <a href="#">&#x21A9;</a>
+        <a href="maquette.html">&#x21A9;</a>
     </div>
-</div>
-<body>
-    
 </body>
 </html>

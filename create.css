@@ -1,0 +1,111 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+
+.container {
+    text-align: center;
+    width: 100%;
+}
+
+/* Bouton Retour en bas à droite */
+.return-button {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: blue;
+    color: white;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.return-button:hover {
+    transform: scale(1.2);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+/* Contenu de la page Créer un Chantier */
+.create-ch {
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+    margin: 0 auto;
+}
+
+.left-section, .right-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.left-section input, .right-section input {
+    padding: 10px;
+    width: 200px;
+    background-color: #ccc;
+    border: none;
+    text-align: center;
+    font-weight: bold;
+}
+
+.center-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.center-section .file-upload {
+    background-color: #ccc;
+    padding: 20px;
+    font-size: 1.5rem;
+    color: #990000;
+    font-weight: bold;
+}
+
+.center-section .file-upload input {
+    display: none;
+}
+
+.checkbox-section {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin-top: 50px;
+}
+
+.checkbox-section label {
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+}
+
+.bottom-right-checkboxes {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.bottom-right-checkboxes label {
+    font-size: 1.2rem;
+}
+
+.bottom-right-checkboxes {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
