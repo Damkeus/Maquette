@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nex&You - Web App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            text-align: center;
+            width: 100%;
+        }
+
+        .title {
+            font-size: 2.5rem;
+            color: red;
+            margin-bottom: 20px;
+        }
+
+        .profiles, .pm-interface, .create-ch, .track-ch, .history-ch {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .profile, .pm-tab {
+            width: 150px;
+            height: 150px;
+            overflow: hidden;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        .profile img, .pm-tab {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: filter 0.3s ease, transform 0.3s ease;
+            filter: grayscale(100%);
+        }
+
+        .profile:hover, .pm-tab:hover {
+            transform: scale(1.2);
+        }
+
+        .profile:hover img {
+            filter: grayscale(0%);
+        }
+
+        .profile-name, .pm-tab-name {
+            margin-top: 10px;
+            font-size: 1.2rem;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Ajustement de la taille des onglets PM */
+        .pm-tab {
+            width: 100px;
+            height: 100px;
+        }
+
+        .pm-tab-create {
+            background-color: green;
+            color: white;
+        }
+
+        .pm-tab-track {
+            background-color: orange;
+            color: white;
+        }
+
+        .pm-tab-history {
+            background-color: gray;
+            color: white;
+        }
+
+        /* Bouton Retour en bas à droite */
+        .return-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: blue;
+            color: white;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .return-button:hover {
+            transform: scale(1.2);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Contenu de la page Créer un Chantier */
+        .create-ch {
+            display: flex;
+            justify-content: space-between;
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        .left-section, .right-section {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .left-section input, .right-section input {
+            padding: 10px;
+            width: 200px;
+            background-color: #ccc;
+            border: none;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .center-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .center-section .file-upload {
+            background-color: #ccc;
+            padding: 20px;
+            font-size: 1.5rem;
+            color: #990000;
+            font-weight: bold;
+        }
+
+        .center-section .file-upload input {
+            display: none;
+        }
+
+        .checkbox-section {
+            display: flex;
+            justify-content: space-between;
+            width: 80%;
+            margin-top: 50px;
+        }
+
+        .checkbox-section label {
+            display: flex;
+            align-items: center;
+            font-size: 1.2rem;
+        }
+
+        .bottom-right-checkboxes {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .bottom-right-checkboxes label {
+            font-size: 1.2rem;
+        }
+
+        .bottom-right-checkboxes {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+    </style>
+    <script>
+        document.getElementById("create-ch").style.display = "none";
+        function showPMInterface() {
+            document.querySelector('.profiles').classList.add('hidden');
+            document.querySelector('.pm-interface').classList.remove('hidden');
+            document.querySelector('.create-ch').classList.add('hidden');
+            document.querySelector('.track-ch').classList.add('hidden');
+            document.querySelector('.history-ch').classList.add('hidden');
+            document.querySelector('.title').textContent = "Interface Chantier";
+            document.querySelector('.title').style.color = 'black';
+        }
+
+        function showProfiles() {
+            document.querySelector('.profiles').classList.remove('hidden');
+            document.querySelector('.pm-interface').classList.add('hidden');
+            document.querySelector('.create-ch').classList.add('hidden');
+            document.querySelector('.track-ch').classList.add('hidden');
+            document.querySelector('.history-ch').classList.add('hidden');
+            document.querySelector('.title').textContent = "Nex&You";
+            document.querySelector('.title').style.color = 'red';
+        }
+
+        function showCreateCh() {
+            document.querySelector('.pm-interface').classList.add('hidden');
+            document.querySelector('.create-ch').classList.remove('hidden');
+            document.querySelector('.track-ch').classList.add('hidden');
+            document.querySelector('.history-ch').classList.add('hidden');
+            document.querySelector('.title').textContent = "Créer un Chantier";
+            document.querySelector('.title').style.color = 'green';
+        }
+
+        function showTrackCh() {
+            document.querySelector('.pm-interface').classList.add('hidden');
+            document.querySelector('.create-ch').classList.add('hidden');
+            document.querySelector('.track-ch').classList.remove('hidden');
+            document.querySelector('.history-ch').classList.add('hidden');
+            document.querySelector('.title').textContent = "Suivi de Chantier";
+            document.querySelector('.title').style.color = 'orange';
+        }
+
+        function showHistoryCh() {
+            document.querySelector('.pm-interface').classList.add('hidden');
+            document.querySelector('.create-ch').classList.add('hidden');
+            document.querySelector('.track-ch').classList.add('hidden');
+            document.querySelector('.history-ch').classList.remove('hidden');
+            document.querySelector('.title').textContent = "Historique de Chantier";
+            document.querySelector('.title').style.color = 'gray';
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="title">Nex&You</div>
+        
+        <!-- Page d'accueil -->
+        <div class="profiles">
+            <div class="profile">
+                <img src="https://via.placeholder.com/150?text=CC" alt="CC">
+            </div>
+            <div class="profile" onclick="showPMInterface()">
+                <img src="https://via.placeholder.com/150?text=PM" alt="PM">
+            </div>
+        </div>
+        
+        <!-- Interface PM -->
+        <div class="pm-interface hidden">
+            <div class="pm-tab pm-tab-create" onclick="showCreateCh()">
+                Créer un chantier
+            </div>
+            <div class="pm-tab pm-tab-track" onclick="showTrackCh()">
+                Suivi de chantier
+            </div>
+            <div class="pm-tab pm-tab-history" onclick="showHistoryCh()">
+                Historique de chantier
+            </div>
+        </div>
+        
+        <!-- Page Créer un Chantier -->
+        <div class="create-ch ">
+            <!-- Section gauche -->
+            <div class="left-section">
+                <input type="text" placeholder="Id du chantier">
+                <input type="text" placeholder="Entrez le nom du chantier">
+                <input type="text" placeholder="Métré">
+                <input type="text" placeholder="Input">
+            </div>
+
+            <!-- Section centrale -->
+            <div class="center-section">
+                <div class="file-upload">
+                    CCTP
+                    <br>
+                    <label for="file-upload">
+                        <span>&#x1F4E5;</span> <!-- Icône de téléchargement -->
+                    </label>
+                    <input type="file" id="file-upload">
+                </div>
+            </div>
+
+            <!-- Section droite -->
+            <div class="right-section">
+                <input type="text" placeholder="Input">
+                <input type="text" placeholder="Input">
+                <input type="text" placeholder="Input">
+                <input type="text" placeholder="Input">
+            </div>
+
+            <!-- Cases à cocher en bas -->
+            <div class="checkbox-section">
+                <label><input type="checkbox"> Décret 92</label>
+                <label><input type="checkbox"> Décret 94</label>
+                <label><input type="checkbox"> RTE</label>
+                <label><input type="checkbox"> Autres</label>
+            </div>
+        </div>
+
+        <!-- Bouton Retour -->
+        <div class="return-button" onclick="showProfiles()">
+            <a href="#">&#x21A9;</a>
+        </div>
+    </div>
+</body>
+</html>
